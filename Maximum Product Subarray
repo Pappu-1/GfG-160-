@@ -1,0 +1,18 @@
+class Solution {
+    // Function to find maximum product subarray
+    int maxProduct(int[] arr) {
+        // code here
+        int proS = 1;
+        int proE = 1;
+        int n = arr.length;
+        int ans = Integer.MIN_VALUE;
+        for(int i=0;i<n;i++){
+            proS *= arr[i];
+            proE *= arr[n-1-i];
+            ans = Math.max(ans,Math.max(proS,proE));
+            if(proS == 0) proS = 1;
+            if(proE == 0) proE = 1;
+        }
+        return ans;
+    }
+}
