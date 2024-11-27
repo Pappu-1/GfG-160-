@@ -1,0 +1,18 @@
+class Solution {
+    public int getLastMoment(int n, int left[], int right[]) {
+        // code here
+        int sum = 0;
+        if(left.length > 0){
+            for(int pos : left){
+                sum = Math.max(sum,pos);
+            }
+        }
+        if(right.length > 0){
+            for(int pos: right){
+                sum = Math.max(sum,n-pos);
+            }
+        }
+        
+        return sum;
+    }
+}
