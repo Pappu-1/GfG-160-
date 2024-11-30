@@ -1,44 +1,41 @@
 class Solution {
-  public:
-    string addBinary(string& s1, string& s2) {
-        // your code here
-        string ans="";
-        int i=s1.size()-1;
-        int j=s2.size()-1;
-        int carry=0;
+    public String addBinary(String s1, String s2) {
+        // code here
+        int i = s1.length()-1;
+        int j = s2.length()-1;
+        String ans = "";
+        int carry = 0;
         while(i>=0 || j>=0){
-            int count1s=0;
-            if(i>=0 && s1[i]=='1') count1s++;
-            if(j>=0 && s2[j]=='1') count1s++;
+            int count1s = 0;
+            if(i>= 0 && s1.charAt(i) == '1') count1s++;
+            if(j>= 0 && s2.charAt(j) == '1') count1s++;
             
-            if(count1s + carry==0){
-                ans+='0';
-                carry=0;
+            if(count1s + carry == 0){
+                ans += '0';
+                carry = 0;
+            }else if(count1s + carry == 1){
+                ans += '1';
+                carry = 0;
             }
-            else if(count1s + carry==1){
-                ans+='1';
-                carry=0;
+            else if(count1s + carry == 2){
+                ans += '0';
+                carry = 1;
             }
-            else if(count1s + carry==2){
-                ans+='0';
-                carry=1;
-            }
-            else if(count1s + carry==3){
-                ans+='1';
-                carry=1;
+            else if(count1s + carry == 3){
+                ans += '1';
+                carry = 1;
             }
             i--;
             j--;
         }
-        if(carry==1){
-            ans+=to_string(carry);
+        if(carry == 1){
+            ans += '1';
         }
-        reverse(ans.begin(),ans.end());
+        String reverse = new StringBuilder(ans).reverse().toString();
         i=0;
-        while(ans[i]=='0'){
-            ans.erase(0,1);
+        while(reverse.charAt(i) == '0'){
+            reverse = reverse.substring(1);
         }
-        
-        return ans;
+        return reverse;
     }
-};
+}
