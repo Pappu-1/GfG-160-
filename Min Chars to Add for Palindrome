@@ -1,0 +1,24 @@
+class Solution {
+    public static int minChar(String s) {
+        // Write your code here
+        StringBuilder rev = new StringBuilder();
+        rev.append(s);
+        rev.reverse();
+        StringBuilder com = new StringBuilder();
+        com.append(s).append('$').append(rev.toString());
+        String complete = com.toString();
+
+        // Compute LPS array
+        int[] LPS = new int[n];
+        int i = 0, j = 1;
+        Arrays.fill(LPS,0);
+        while(j<n){
+            if(complete.charAt(j) == complete.charAt(i))LPS[j++] = ++i;
+            else if(i!=0)i=LPS[i-1];
+            else j++;
+        }
+
+        // Minimum characters needed to make `s` a palindrome
+        return s.length() - i;
+    }
+}
