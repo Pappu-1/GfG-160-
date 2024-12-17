@@ -1,0 +1,38 @@
+
+
+// User function Template for Java
+class Solution {
+    public static boolean possible(int[] stalls, int k, int mid){
+        int n = stalls.length;
+        int placeCow = 1;
+        int lastpos = stalls[0];
+        for(int i=0;i<n;i++){
+            if(stalls[i]-lastpos >= mid){
+                placeCow++;
+                lastpos = stalls[i];
+            }
+            if(placeCow == k){
+                return true;
+            }
+        }
+        return false;
+    }
+    public static int aggressiveCows(int[] stalls, int k) {
+        // code here
+        Arrays.sort(stalls);
+        int n=stalls.length;
+        int low = 0, high = stalls[n-1] - stalls[0];
+        int ans = 0;
+        
+        while(low<=high){
+            int mid = low + (high-low)/2;
+            if(possible(stalls,k,mid)){
+                ans = mid;
+                low = mid +1;
+            }else{
+                high = mid -1;
+            }
+        }
+        return ans;
+    }
+}
