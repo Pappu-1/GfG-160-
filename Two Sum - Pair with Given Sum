@@ -1,0 +1,19 @@
+
+
+// User function Template for Java
+
+class Solution {
+    boolean twoSum(int arr[], int target) {
+        // code here
+        HashSet<Integer>set = new HashSet<>();
+        for(int a : arr){
+            int b = target - a;
+            if(set.contains(b)){
+                return true;
+            }else{
+                set.add(a);
+            }
+        }
+        return false;
+    }
+}
