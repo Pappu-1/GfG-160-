@@ -1,0 +1,17 @@
+class Solution {
+
+    int countPairs(int arr[], int target) {
+        // Your code here
+        HashMap<Integer,Integer>map = new HashMap<>();
+        int ans = 0;
+        for(int a : arr){
+            if(map.containsKey(target-a)){
+                ans += map.get(target-a);
+                map.put(a,map.getOrDefault(a,0)+1);
+            }else{
+                map.put(a,map.getOrDefault(a,0)+1);
+            }
+        }
+        return ans;
+    }
+}
