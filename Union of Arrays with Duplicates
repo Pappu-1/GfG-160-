@@ -1,0 +1,21 @@
+
+
+// User function Template for Java
+
+class Solution {
+    public static int findUnion(int a[], int b[]) {
+        // code here
+        HashSet<Integer> set = new HashSet<>();
+        for(int i : a){
+            if(!set.contains(i)){
+                set.add(i);
+            }
+        }
+        for(int i : b){
+            if(!set.contains(i)){
+                set.add(i);
+            }
+        }
+        return set.size();
+    }
+}
