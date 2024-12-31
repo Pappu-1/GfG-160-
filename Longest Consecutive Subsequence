@@ -1,0 +1,27 @@
+
+
+class Solution {
+
+    // Function to return length of longest subsequence of consecutive integers.
+    public int longestConsecutive(int[] arr) {
+        // code here
+        int[] freq = new int[100001];
+        Arrays.fill(freq,0);
+        int count =0;
+        int ans = Integer.MIN_VALUE;
+        int maxi = -1;
+        for(int a : arr){
+            freq[a]++;
+            maxi = Math.max(maxi,a);
+        }
+        for(int i=0;i<=maxi;i++){
+            if(freq[i]>0) count++;
+            else{
+                ans = Math.max(ans,count);
+                count=0;
+            }
+            ans = Math.max(ans,count);
+        }
+        return ans;
+    }
+}
