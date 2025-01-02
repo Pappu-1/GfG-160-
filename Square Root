@@ -1,0 +1,19 @@
+
+
+/*You are required to complete
+this function*/
+
+// Function to find square root
+// x: element to find square root
+class Solution {
+    int floorSqrt(int n) {
+        // Your code here
+        int ans =0;
+        for(int i=1;i*i<=n;i++){
+            if(i*i <= n){
+                ans = i;
+            }
+        }
+        return ans;
+    }
+}
