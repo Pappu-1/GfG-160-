@@ -1,0 +1,21 @@
+
+
+class Solution {
+    public long subarrayXor(int arr[], int k) {
+        // code here
+        HashMap<Integer,Integer>mp = new HashMap<>();
+        int prexor = 0;
+        int count =0;
+        for(int a:arr){
+            prexor^=a;
+            if(prexor == k){
+                count++;
+            }
+            if(mp.containsKey(prexor^k)){
+                count += mp.get(prexor^k);
+            }
+            mp.put(prexor,mp.getOrDefault(prexor,0)+1);
+        }
+        return count;
+    }
+}
