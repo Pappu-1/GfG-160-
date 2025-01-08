@@ -1,21 +1,32 @@
-// User function template for C++
+
+
+// User function Template for Java
+
 class Solution {
-  public:
-    vector<int> sumClosest(vector<int>& arr, int target) {
+    public List<Integer> sumClosest(int[] arr, int target) {
         // code here
-        sort(arr.begin(),arr.end());
-        int s=0,e=arr.size()-1;
-        int diff=INT_MAX;
-        vector<int>ans;
-        while(s<e){
-            int pairsum=arr[s]+arr[e];
-            if(abs(target-pairsum)<diff){
-            diff=min(abs(target-pairsum),diff);
-            ans={arr[s],arr[e]};}
-            if(pairsum<target) s++;
-            else if(pairsum>target) e--;
-            else return ans;
+        int n = arr.length;
+        int i=0,j=n-1;
+        int closediff = Integer.MAX_VALUE;
+        int first = -1 ,second = -1;
+        ArrayList<Integer> ans = new ArrayList<>();
+        Arrays.sort(arr);
+        while(i<j){
+            int sum = arr[i]+arr[j];
+            int currdiff = Math.abs(target-sum);
+            if(currdiff < closediff || (currdiff == closediff && (arr[j]-arr[i]) > (second-first))){
+                first = arr[i];
+                second = arr[j];
+                closediff = currdiff;
+            }
+            if(sum<target) i++;
+            else j--;
         }
+        if(first == -1 && second == -1){
+            return ans;
+        }
+        ans.add(first);
+        ans.add(second);
         return ans;
     }
-};
+}
