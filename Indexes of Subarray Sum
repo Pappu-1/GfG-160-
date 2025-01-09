@@ -1,0 +1,35 @@
+
+
+
+class Solution {
+    static ArrayList<Integer> subarraySum(int[] arr, int target) {
+        // code here
+        int n = arr.length;
+        int i=0,j=0;
+        int sum =0;
+        ArrayList<Integer> ans = new ArrayList<>();
+        while(j<n){
+            sum += arr[j];
+            if(sum == target){
+                ans.add(i+1);
+                ans.add(j+1);
+                return ans;
+            }else if(sum<target){
+                j++;
+            }else{
+                while(sum>target){
+                    sum-=arr[i];
+                    i++;
+                    if(sum == target){
+                        ans.add(i+1);
+                        ans.add(j+1);
+                        return ans;
+                    }
+                }
+                j++;
+            }
+        }
+        if(j == n) ans.add(-1);
+        return ans;
+    }
+}
