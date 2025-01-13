@@ -1,0 +1,26 @@
+
+
+// User function Template for Java
+
+class Solution {
+
+    public int maxWater(int arr[]) {
+        // Code Here
+        int n = arr.length;
+        int leftmax = 0;
+        int rightmax = 0;
+        int i=0,j=n-1;
+        int totalw = 0;
+        while(i<j){
+            leftmax = Math.max(leftmax,arr[i]);
+            rightmax = Math.max(rightmax,arr[j]);
+            totalw = Math.max(Math.min(leftmax,rightmax)*(j-i),totalw);
+            if(arr[i]<arr[j]){
+                i++;
+            }else{
+                j--;
+            }
+        }
+        return totalw;
+    }
+}
