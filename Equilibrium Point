@@ -1,0 +1,22 @@
+
+
+class Solution {
+    // Function to find equilibrium point in the array.
+    public static int findEquilibrium(int arr[]) {
+        // code here
+        int n = arr.length;
+        int totals = 0;
+        for(int a:arr){
+            totals += a;
+        }
+        int lefts = 0,rights = 0;
+        for(int i=1;i<n-1;i++){
+            lefts += arr[i-1];
+            rights = totals - lefts - arr[i];
+            if(lefts == rights){
+                return i;
+            }
+        }
+        return -1;
+    }
+}
