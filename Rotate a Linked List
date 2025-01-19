@@ -1,0 +1,39 @@
+/* node of linked list:
+
+class Node{
+    int data;
+    Node next;
+    Node(int d){
+        data=d;
+        next=null;
+    }
+}
+
+*/
+
+class Solution {
+    public Node rotate(Node head, int k) {
+        // add code here
+        if(head == null || head.next == null || k==0){
+            return head;
+        }
+        Node temp = head;
+        int size = 1;
+        while(temp.next != null){
+            temp = temp.next;
+            size++;
+        }
+        k=k%size;
+        if(k==0){
+            return head;
+        }
+        Node cur = head;
+        for(int i=0;i<k-1;i++){
+            cur = cur.next;
+        }
+        Node ans = cur.next;
+        cur.next = null;
+        temp.next = head;
+        return ans;
+    }
+}
