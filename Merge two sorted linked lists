@@ -1,0 +1,37 @@
+
+
+/*
+  Node is defined as
+    class Node
+    {
+        int data;
+        Node next;
+        Node(int d) {data = d; next = null; }
+    }
+*/
+
+class Solution {
+    Node sortedMerge(Node head1, Node head2) {
+        // code here
+        Node cur1 = head1,cur2 = head2,dummy = new Node(0);
+        Node ans  = dummy;
+        while(cur1 != null && cur2 != null){
+            if(cur1.data <= cur2.data){
+                ans.next = cur1;
+                cur1 = cur1.next;
+                
+            }else{
+                ans.next = cur2;
+                cur2 = cur2.next;
+            }
+            ans = ans.next;
+        }
+        
+        if (cur1 != null) {
+            ans.next = cur1;
+        } else if (cur2 != null) {
+            ans.next = cur2;
+        }
+        return dummy.next;
+    }
+}
