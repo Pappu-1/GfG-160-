@@ -1,0 +1,47 @@
+
+
+/* Structure of class Node is
+class Node
+{
+    int data;
+    Node next;
+
+    Node(int d)
+    {
+        data = d;
+        next = null;
+    }
+}*/
+
+class Solution {
+    // Function to check whether the list is palindrome.
+    static Node reverse(Node head){
+        Node cur = head,pre = null,nxt;
+        while(cur != null){
+            nxt = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = nxt;
+        }
+        return pre;
+    }
+    static boolean isPalindrome(Node head) {
+        // Your code here
+        Node slow = head;
+        Node fast = head;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        Node secondh = reverse(slow);
+        Node firsth = head;
+        while(firsth != null && secondh != null){
+            if(firsth.data != secondh.data){
+                return false;
+            }
+            firsth = firsth.next;
+            secondh = secondh.next;
+        }
+        return true;
+    }
+}
