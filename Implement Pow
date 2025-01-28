@@ -1,0 +1,27 @@
+// User function Template for Java
+class Solution {
+    double power(double b, int e) {
+        // code here
+        // iterative
+        double ans = 1;
+        int p = e;
+        e=Math.abs(e);
+        while(e > 0){
+            if(e%2 != 0){
+                ans *= b;
+            }
+            b *= b;
+            e/=2;
+        }
+        return p < 0 ? 1/ans : ans;
+    
+        // recursive
+        if(e==0) return 1;
+        
+        if(e<0) return 1/power(b,-e);
+        
+        double half = power(b,e/2);
+        return e%2 != 0 ? b*half*half : half*half;
+    
+    }
+}
