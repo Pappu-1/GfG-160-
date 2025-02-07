@@ -1,0 +1,96 @@
+// python
+'''
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+'''
+class Solution:
+    def intersectPoint(self, head1, head2):
+        # code here
+        cur = head1
+        cur1 = head2
+        size = 1
+        while cur:
+            cur = cur.next
+            size += 1
+        size1 = 1
+        while cur1:
+            cur1 = cur1.next
+            size1 += 1
+        
+        d = abs(size-size1)
+        cur = head1
+        cur1 = head2
+        if size > size1:
+            while d>0:
+                cur = cur.next
+                d -=1
+        else:
+            while d>0:
+                cur1 = cur1.next
+                d -=1
+        
+        while cur and cur1:
+            if cur is cur1:
+                return cur
+            cur = cur.next
+            cur1 = cur1.next
+        return None
+
+// java
+
+
+/* Node of a linked list
+ class Node {
+   int data;
+    Node next;
+    Node(int d)  { data = d;  next = null; }
+}
+ Linked List class
+class LinkedList
+{
+    Node head;  // head of list
+}*/
+
+class Intersect {
+    // Function to find intersection point in Y shaped Linked Lists.
+    static Node intersectPoint(Node head1, Node head2) {
+        // code here
+        Node temp = head1;
+        int size = 1;
+        while(temp != null){
+            temp = temp.next;
+            size++;
+        }
+        Node temp1 = head2;
+        int size1 = 1;
+        while(temp1 != null){
+            temp1 = temp1.next;
+            size1++;
+        }
+        int d = Math.abs(size - size1);
+        temp = head1;
+        temp1 = head2;
+        if(size > size1){
+            while(d>0){
+                temp = temp.next;
+                d--;
+            }
+        }else{
+            while(d>0){
+                temp1 = temp1.next;
+                d--;
+            }
+        }
+        while(temp != null && temp1 != null){
+            if(temp == temp1){
+                return temp;
+            }
+            temp = temp.next;
+            temp1 = temp1.next;
+        }
+        return null;
+    }
+}
