@@ -1,0 +1,62 @@
+// java
+
+
+
+/* A Binary Tree node
+
+class Node {
+    int data;
+    Node left, right;
+   Node(int item)    {
+        data = item;
+        left = right = null;
+    }
+}
+*/
+class Solution {
+    // Function to return a list containing the inorder traversal of the tree.
+    void solve(Node root,ArrayList<Integer> ans){
+        if(root == null) return;
+        solve(root.left,ans);
+        ans.add(root.data);
+        solve(root.right,ans);
+    }
+    ArrayList<Integer> inOrder(Node root) {
+        // Code
+        ArrayList<Integer> ans = new ArrayList<>();
+        if(root == null) return null;
+        solve(root,ans);
+        return ans;
+    }
+}
+
+
+// python
+
+'''
+# Node Class:
+class Node:
+    def init(self,val):
+        self.data = val
+        self.left = None
+        self.right = None
+'''
+
+class Solution:
+    def solve(self,root,result):
+        if root is None:
+            return
+        self.solve(root.left,result)
+        result.append(root.data)
+        self.solve(root.right,result)
+        
+    def inOrder(self,root):
+        # code here
+        if root is None:
+            return []
+            
+        result = []
+        self.solve(root,result)
+        return result
+        
+
