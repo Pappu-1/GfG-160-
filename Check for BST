@@ -1,0 +1,46 @@
+// Java
+// User function Template for Java
+
+class Solution {
+    // Function to check whether a Binary Tree is BST or not.
+    void inOrder(Node root,ArrayList<Integer>res){
+        if(root == null) return;
+        inOrder(root.left,res);
+        res.add(root.data);
+        inOrder(root.right,res);
+    }
+    boolean isBST(Node root) {
+        // code here.
+        ArrayList<Integer>res = new ArrayList<>();
+        inOrder(root,res);
+        for(int i=0;i<res.size()-1;i++){
+            if(res.get(i)>res.get(i+1)){
+                return false;
+            }
+        }
+        return true;
+    }
+}
+// Python
+#User function Template for python3
+
+
+class Solution:
+    
+    #Function to check whether a Binary Tree is BST or not.
+    def inOrder(self,root,res):
+        if root is None:
+            return
+        self.inOrder(root.left,res)
+        res.append(root.data)
+        self.inOrder(root.right,res)
+        
+    def isBST(self, root):
+        #code here
+        res = []
+        self.inOrder(root,res)
+        for i in range(len(res)-1):
+            if res[i] > res[i+1]:
+                return False
+
+        return True
