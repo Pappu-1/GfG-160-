@@ -1,0 +1,69 @@
+//java
+
+
+// User function Template for Java
+
+// class Node
+// {
+//     int data;
+//     Node left, right;
+
+//     public Node(int d)
+//     {
+//         data = d;
+//         left = right = null;
+//     }
+// }
+
+class Solution {
+    void inOrder(Node root,ArrayList<Integer> res){
+        if(root == null) return;
+        inOrder(root.left,res);
+        res.add(root.data);
+        inOrder(root.right,res);
+    }
+    // Return the Kth smallest element in the given BST
+    public int kthSmallest(Node root, int k) {
+        // Write your code here
+        ArrayList<Integer> res = new ArrayList<>();
+        inOrder(root,res);
+        if(k>res.size()) return -1;
+        for(int i=0;i<res.size();i++){
+            if(k==i+1){
+                return res.get(i);
+            }
+        }
+        return -1;
+    }
+}
+
+//python
+#User function Template for python3
+
+'''
+class Node:
+    def __init__(self, val):
+        self.right = None
+        self.data = val
+        self.left = None
+'''
+
+class Solution:
+    # Return the kth smallest element in the given BST 
+    def inOrder(self,root,res):
+        if root is None:
+            return
+        self.inOrder(root.left,res)
+        res.append(root.data)
+        self.inOrder(root.right,res)
+        
+    def kthSmallest(self, root, k): 
+        #code here.
+        res = []
+        self.inOrder(root,res)
+        if k > len(res) :
+            return -1
+        for i in range(len(res)):
+            if k == i+1:
+                return res[i]
+        return -1
