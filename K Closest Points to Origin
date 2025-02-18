@@ -1,0 +1,42 @@
+//JAVA
+class Solution {
+    public int[][] kClosest(int[][] points, int k) {
+        // Your code here
+        PriorityQueue<int[]> pq = new PriorityQueue<>(
+            (a,b) -> Integer.compare(
+                (b[0]*b[0] + b[1]*b[1]),
+                (a[0]*a[0] + a[1]*a[1])
+                )
+            );
+        for(int[] a:points){
+            pq.add(a);
+            if(pq.size()>k){
+                pq.poll();
+            }
+        }
+        int[][] ans = new int[k][];
+        for(int i=0;i<k;i++){
+            ans[i] = pq.poll();
+        }
+        return ans;
+    }
+}
+
+//python
+
+
+import heapq
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        # Your code here
+        pq = []
+        
+        for x,y in points:
+            dist = -(x*x + y*y)
+            heapq.heappush(pq,(dist,x,y))
+            if len(pq)>k:
+                heapq.heappop(pq)
+        
+        return [[x, y] for _, x, y in pq]
+        
+        
