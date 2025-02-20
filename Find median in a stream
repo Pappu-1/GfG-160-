@@ -1,0 +1,46 @@
+// JAVA
+
+
+class Solution {
+    public ArrayList<Double> getMedian(int[] arr) {
+        // code here
+        ArrayList<Double> res = new ArrayList<>();
+        PriorityQueue<Integer>maxheap = new PriorityQueue<>(Collections.reverseOrder());
+        PriorityQueue<Integer>minheap = new PriorityQueue<>();
+        
+        for(int a : arr){
+            maxheap.add(a);
+            minheap.add(maxheap.poll());
+            if(minheap.size()>maxheap.size()){
+                maxheap.add(minheap.poll());
+            }
+            if(maxheap.size()>minheap.size()){
+                res.add((double) maxheap.peek());
+            }else{
+                res.add((minheap.peek()+maxheap.peek())/2.0);
+            }
+        }
+        return res;
+    }
+}
+//PYTHON
+
+import heapq
+class Solution:
+    def getMedian(self, arr):
+        minheap = []
+        maxheap = []
+        res = []
+        
+        for num in arr:
+            heapq.heappush(maxheap,-num)
+            heapq.heappush(minheap,-heapq.heappop(maxheap))
+            if len(minheap) > len(maxheap):
+                heapq.heappush(maxheap,-heapq.heappop(minheap))
+            if len(minheap) < len(maxheap):
+                res.append(float(-maxheap[0]))
+            else:
+                res.append((-maxheap[0] + minheap[0])/2.0)
+        
+        return res
+            
